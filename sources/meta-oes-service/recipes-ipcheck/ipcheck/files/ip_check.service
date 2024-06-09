@@ -1,0 +1,10 @@
+[Unit]
+Description=ip address monitor service
+After=startup.service
+
+[Service]
+ExecStart=/etc/ip_check.sh
+
+[Install]
+WantedBy=multi-user.target
+

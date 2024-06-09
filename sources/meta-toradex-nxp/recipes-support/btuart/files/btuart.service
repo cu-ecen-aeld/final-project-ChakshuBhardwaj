@@ -1,0 +1,13 @@
+[Unit]
+Description=Initialize Bluetooth UART
+Wants=bluetooth.service
+Before=bluetooth.service
+After=sys-subsystem-net-devices-mlan0.device
+After=dev-ttymxc3.device
+
+[Service]
+Type=forking
+ExecStart=/usr/sbin/btuart.sh
+
+[Install]
+WantedBy=multi-user.target

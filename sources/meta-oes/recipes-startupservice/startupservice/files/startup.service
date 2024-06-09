@@ -1,0 +1,8 @@
+[Unit]
+Description=Start up service
+
+[Service]
+ExecStart=/etc/oesStart.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Brightness monitor service
+
+[Service]
+ExecStart=/etc/brightnessControl.sh
+
+[Install]
+WantedBy=multi-user.target
+

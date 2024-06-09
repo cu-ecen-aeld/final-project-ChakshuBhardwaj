@@ -1,0 +1,42 @@
+From 1c9ad2f2bbd9ad99b89c330ee809f5752cb03877 Mon Sep 17 00:00:00 2001
+From: Max Krummenacher <max.krummenacher@toradex.com>
+Date: Thu, 4 Feb 2021 20:37:02 +0000
+Subject: [PATCH 2/2] libweston/pixman-renderer.c: zero freed pointer
+
+Setting struct elements in a struct just before the whole struct
+is freed makes little sense, however zero the pointer to said struct
+guards against using the no longer assigned memory.
+
+Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+---
+ libweston/pixman-renderer.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/libweston/pixman-renderer.c b/libweston/pixman-renderer.c
+index 59b1f0ff..ec037e44 100644
+--- a/libweston/pixman-renderer.c
++++ b/libweston/pixman-renderer.c
+@@ -967,6 +967,9 @@ pixman_renderer_output_destroy(struct weston_output *output)
+ {
+ 	struct pixman_output_state *po = get_output_state(output);
+ 
++	if (!po)
++		return;
++
+ 	if (po->shadow_image)
+ 		pixman_image_unref(po->shadow_image);
+ 
+@@ -975,9 +978,6 @@ pixman_renderer_output_destroy(struct weston_output *output)
+ 
+ 	free(po->shadow_buffer);
+ 
+-	po->shadow_buffer = NULL;
+-	po->shadow_image = NULL;
+-	po->hw_buffer = NULL;
+-
+ 	free(po);
++	output->renderer_state = NULL;
+ }
+-- 
+2.20.1
+

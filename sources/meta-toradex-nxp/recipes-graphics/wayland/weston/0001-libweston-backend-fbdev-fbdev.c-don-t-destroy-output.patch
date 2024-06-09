@@ -1,0 +1,50 @@
+From 52ec338ec27a3e3267442bcef36e0b9312441af5 Mon Sep 17 00:00:00 2001
+From: Max Krummenacher <max.krummenacher@toradex.com>
+Date: Thu, 4 Feb 2021 20:33:40 +0000
+Subject: [PATCH 1/2] libweston/backend-fbdev/fbdev.c: don't destroy output
+ twice
+
+This is currently unsupported and may result in a segfault.
+
+fbdev_output_disable(base) does call pixman_renderer_output_destroy(base) so
+one should not do it a second time here.
+
+Observed on a colibri-imx6ull which actually uses pixman for rendering.
+
+Program received signal SIGSEGV, Segmentation fault.
+_pixman_image_fini (image=0x636f6c2f)
+    at ../pixman-0.38.4/pixman/pixman-image.c:139
+139	../pixman-0.38.4/pixman/pixman-image.c: Datei oder Verzeichnis nicht gefunden.
+(gdb) bt
+    at ../pixman-0.38.4/pixman/pixman-image.c:139
+    at ../pixman-0.38.4/pixman/pixman-image.c:211
+    at ../git/libweston/pixman-renderer.c:971
+    at ../git/libweston/backend-fbdev/fbdev.c:790
+    at ../git/libweston/compositor.c:7607
+    at ../git/libweston/backend-fbdev/fbdev.c:885
+    at ../git/libweston/compositor.c:7949
+    at ../git/compositor/main.c:3538
+   from /srv/nfs/rootfs-colibri-imx6ull/lib/libc.so.6
+
+Signed-off-by: Max Krummenacher <max.krummenacher@toradex.com>
+---
+ libweston/backend-fbdev/fbdev.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/libweston/backend-fbdev/fbdev.c b/libweston/backend-fbdev/fbdev.c
+index becc1488..6c6376c1 100644
+--- a/libweston/backend-fbdev/fbdev.c
++++ b/libweston/backend-fbdev/fbdev.c
+@@ -786,8 +786,7 @@ fbdev_output_destroy(struct weston_output *base)
+ 	fbdev_output_disable(base);
+ 
+ 	if (backend->use_pixman) {
+-		if (base->renderer_state != NULL)
+-			pixman_renderer_output_destroy(base);
++		;
+ #if defined(ENABLE_IMXGPU)
+ #if defined(ENABLE_IMXG2D)
+ 	} else if (backend->use_g2d) {
+-- 
+2.20.1
+

@@ -1,0 +1,73 @@
+{
+    "brightness": {
+        "controller_day_level": 100,
+        "controller_day_time_ampm": 0,
+        "controller_day_time_hrs": 8,
+        "controller_day_time_mins": 0,
+        "controller_night_level": 70,
+        "controller_night_time_ampm": 1,
+        "controller_night_time_hrs": 7,
+        "controller_night_time_mins": 0,
+        "scoreboard_day_level": 8,
+        "scoreboard_day_time_ampm": 0,
+        "scoreboard_day_time_hrs": 8,
+        "scoreboard_day_time_mins": 0,
+        "scoreboard_night_level": 4,
+        "scoreboard_night_time_ampm": 1,
+        "scoreboard_night_time_hrs": 7,
+        "scoreboard_night_time_mins": 0
+    },
+    "compPortSettings": {
+        "aux_port_buadrate": 1,
+        "aux_port_databits": 8,
+        "aux_port_func": 0,
+        "aux_port_parity": 0,
+        "aux_port_stopbit": 1,
+        "game_port_input": 2
+    },
+    "inputSettings": {
+        "isc_hh": 0,
+        "remote_1": 1,
+        "remote_2": 2,
+        "remote_3": 0
+    },
+    "outputsSettings": {
+        "active_system": 4,
+        "end_of_period": 3,
+        "end_of_period_length": 4,
+        "game_horn": 1,
+        "game_horn_length": 4,
+        "goal_light_left": 1,
+        "goal_light_right": 2,
+        "shot_clock_horn": 2,
+        "shot_clock_horn_length": 1,
+        "time_off": 0,
+        "time_on": 0
+    },
+    "radioSettings": {
+        "radio_address_0_1_na_sbset": 0,
+        "radio_channel_0_7_0x0c_0x17_sbset": 0,
+        "radio_scan_list_0_0_0x0c_sbset": 0,
+        "radio_scan_list_0_1_0x0d_sbset": 0,
+        "radio_scan_list_1_0_0x0e_sbset": 0,
+        "radio_scan_list_1_1_0x0f_sbset": 0,
+        "radio_scan_list_2_0_0x10_sbset": 0,
+        "radio_scan_list_2_1_0x11_sbset": 0,
+        "radio_scan_list_3_0_0x12_sbset": 0,
+        "radio_scan_list_3_1_0x13_sbset": 0,
+        "radio_scan_list_4_0_0x14_sbset": 0,
+        "radio_scan_list_4_1_0x15_sbset": 0,
+        "radio_scan_list_5_0_0x16_sbset": 0,
+        "radio_scan_list_5_1_0x17_sbset": 0,
+        "radio_scan_list_6_0_na_sbset": 0,
+        "radio_scan_list_6_1_na_sbset": 0,
+        "radio_scan_list_7_0_na_sbset": 0,
+        "radio_scan_list_7_1_na_sbset": 0,
+        "radio_status": 0
+    },
+    "xmlDataOutSettings": {
+        "ip_addr": "239.2.2.1",
+        "ip_port": 12345,
+        "multicast_flag": 1
+    }
+}
